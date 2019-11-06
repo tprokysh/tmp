@@ -6,7 +6,6 @@ import path = require("path");
 import cheerio = require("cheerio");
 import request = require("request");
 import chance = require("chance");
-import logg = require("winston");
 
 const app: express.Application = express();
 const server: http.Server = new http.Server(app);
@@ -89,6 +88,6 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/index.html"));
 });
 
-server.listen(5000, () => {
+server.listen(3000, () => {
   console.log("HTTP server started on port 3000");
 });
