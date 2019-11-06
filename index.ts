@@ -88,6 +88,6 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/index.html"));
 });
 
-server.listen(5000, () => {
+server.listen(3000, () => {
   console.log("HTTP server started on port 3000");
 });
