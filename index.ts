@@ -40,8 +40,8 @@ con.on("connection", (socket: any) => {
       `${socket.handshake.headers["user-agent"]}" - New JSON: ${data}, `;
 
     data = JSON.parse(data);
-    let query = data.query.replace(" ", "+");
-    let url = `https://www.bing.com/search?q=${query}&qs=n&form=QBLH&sp=-1&pq=hello&sc=8-5&sk=&cvid=5ADDE9B642004421A77FC7EF634DDD8A`;
+    let query = data["query"].replace(/ /g, "+");
+    let url = `https://www.bing.com/search?q=${query}`;
 
     //request search
     request(url, (res: any, body: any) => {
@@ -88,6 +88,6 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/index.html"));
 });
 
-server.listen(3000, () => {
+server.listen(5000, () => {
   console.log("HTTP server started on port 3000");
 });
