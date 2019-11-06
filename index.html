@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Client</title>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script>
+      let socket = io();
+
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+      }
+
+      socket.on("sendToClient", function(data) {
+        console.log(data);
+      });
+
+      setInterval(() => {
+        let event = getRandomInt(3);
+
+        if (event == 0) {
+          let forSearch = { type: "test", query: "node js development" };
+          let json = JSON.stringify(forSearch, 2);
+          socket.emit("receivedJsonFromClient", json);
+        } else if (event == 1) {
+          socket.emit("receivedRawFromClient", "Some data");
+        } else {
+          socket.emit("receivedFileFromClient", "test.jpg");
+        }
+      }, 2000);
+    </script>
+  </body>
+</html>
